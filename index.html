@@ -212,6 +212,17 @@ dl.kv dt{color:var(--muted)} dl.kv dd{margin:0;font-weight:600;word-break:break-
 .hidden{display:none!important}
 a{color:var(--primary)}
 
+/* Aviso de actualización */
+.update{position:fixed;left:12px;right:12px;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 12px);z-index:1500;max-width:616px;margin:0 auto;
+  display:flex;align-items:center;gap:12px;padding:12px 12px 12px 16px;border-radius:18px;background:var(--text);color:var(--bg);
+  box-shadow:0 10px 30px rgba(0,0,0,.3);animation:sube .3s ease-out}
+.update .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--primary);color:var(--primary-ink);flex:none}
+.update span.t{flex:1;min-width:0;font-size:14px;line-height:1.3}
+.update span.t b{display:block;font-size:15px}
+.update span.t small{opacity:.75}
+.update .btn{min-height:40px;background:var(--primary);border-color:var(--primary);color:var(--primary-ink);flex:none}
+@keyframes sube{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+
 /* Mapa */
 dialog.full{max-width:none;width:100vw;height:100dvh;max-height:none;border-radius:0;margin:0;background:#0b1410}
 #mapa{position:absolute;inset:0;background:#0b1410}
@@ -441,11 +452,17 @@ dialog.full{max-width:none;width:100vw;height:100dvh;max-height:none;border-radi
   </div>
 </dialog>
 
+<div class="update hidden" id="updBar" role="status">
+  <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg></span>
+  <span class="t"><b>Nueva versión disponible</b><small id="updTxt">Tus registros se conservan.</small></span>
+  <button class="btn sm" type="button" id="updBtn">Actualizar</button>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 'use strict';
-const APP_VERSION = '2.0.0';
+const APP_VERSION = '2.1.0';
 
 /* =================== Definiciones =================== */
 const COLS = {
@@ -1374,7 +1391,32 @@ $('#mGuardar').onclick = () => {
 let promptInstalar = null;
 window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); promptInstalar = e; $('#btnInstall').classList.remove('hidden'); });
 $('#btnInstall').addEventListener('click', async () => { if(!promptInstalar) return; promptInstalar.prompt(); await promptInstalar.userChoice; promptInstalar=null; $('#btnInstall').classList.add('hidden'); });
-if('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(()=>{});
+/* Actualizaciones: el service worker nuevo espera hasta que se toque «Actualizar» */
+let swEnEspera = null;
+function mostrarActualizacion(sw){
+  swEnEspera = sw;
+  const enCurso = planta.davis!==null || !!fotoActual || ($('#pNotas').value||'').trim();
+  $('#updTxt').textContent = enCurso ? 'Guarda primero la planta en curso; tus registros se conservan.' : 'Tus registros y catálogos se conservan.';
+  $('#updBar').classList.remove('hidden');
+}
+$('#updBtn').addEventListener('click', () => {
+  if(planta.davis!==null && !confirm('Hay una planta sin guardar. ¿Actualizar de todos modos? Esa captura se perderá.')) return;
+  $('#updBtn').disabled = true; $('#updBtn').textContent = 'Actualizando…';
+  if(swEnEspera) swEnEspera.postMessage('ACTUALIZAR'); else location.reload();
+});
+if('serviceWorker' in navigator && location.protocol !== 'file:'){
+  let recargando = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => { if(!recargando){ recargando = true; location.reload(); } });
+  navigator.serviceWorker.register('sw.js').then(reg => {
+    const vigilar = sw => sw && sw.addEventListener('statechange', () => { if(sw.state==='installed' && navigator.serviceWorker.controller) mostrarActualizacion(sw); });
+    if(reg.waiting && navigator.serviceWorker.controller) mostrarActualizacion(reg.waiting);
+    vigilar(reg.installing);
+    reg.addEventListener('updatefound', () => vigilar(reg.installing));
+    // Buscar versión nueva al volver a la app y cada 30 min mientras está abierta
+    document.addEventListener('visibilitychange', () => { if(document.visibilityState==='visible' && navigator.onLine) reg.update().catch(()=>{}); });
+    setInterval(() => { if(navigator.onLine) reg.update().catch(()=>{}); }, 30*60*1000);
+  }).catch(()=>{});
+}
 navigator.storage?.persist?.().catch(()=>{});
 
 construirDavis();
