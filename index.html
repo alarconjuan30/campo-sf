@@ -140,7 +140,31 @@ input[readonly]{opacity:.75}
 .davis button:active{transform:scale(.94)}
 .davis.has-sel button{opacity:.38}
 .davis button.on{opacity:1;transform:scale(1.04);box-shadow:0 0 0 3px var(--surface),0 0 0 6px var(--c)}
-.davis-desc{min-height:62px;margin:14px 0 4px;padding:12px 14px;border-radius:12px;background:var(--surface-2);font-size:14px;color:var(--muted)}
+.davis-desc{display:flex;align-items:center;gap:12px;min-height:62px;margin:14px 0 4px;padding:10px;border-radius:14px;background:var(--surface-2);font-size:14px;color:var(--muted)}
+.davis-desc > .dv{width:132px;height:124px;flex:none;border-radius:12px}
+.dv{--dvbg:var(--surface);background:var(--dvbg);display:block;overflow:hidden}
+.dv svg{width:100%;height:100%;display:block}
+.dv .win{fill:#e9f0c8;stroke:#c2ce8c;stroke-width:.4}
+.dv .hole{fill:var(--dvbg);stroke:#9b7b48;stroke-width:.7}
+.dv .heces{fill:#8a6a3a}
+.dv .vent{fill:#eef1d8;fill-opacity:.9;stroke:#cdd3a4;stroke-width:.5}
+.dv .hoyo{stroke:#ddd3a0;stroke-width:1.1;stroke-opacity:.9}
+.dv{position:relative}
+.dv img.ref{width:100%;height:100%;object-fit:cover;display:block}
+.ref-tag{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.62);color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px}
+.dv .les{transform-box:fill-box;transform-origin:center;animation:pop .4s both cubic-bezier(.3,1.6,.5,1)}
+.dv .planta{transform-origin:100px 188px;animation:mece 3.2s ease-in-out infinite alternate}
+.dv .larva{transform-box:fill-box;transform-origin:center;animation:repta 1.4s ease-in-out infinite alternate}
+@keyframes pop{from{transform:scale(0);opacity:0}}
+@keyframes mece{from{transform:rotate(-1.4deg)}to{transform:rotate(1.4deg)}}
+@keyframes repta{to{transform:translateX(1.8px) scaleX(.9)}}
+.guia{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.guia-it{display:flex;flex-direction:column;gap:6px;padding:8px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);text-align:left;color:var(--text)}
+.guia-it .dv{width:100%;aspect-ratio:200/188;border-radius:10px;--dvbg:var(--surface-2)}
+.guia-it .n{display:flex;align-items:center;gap:6px;font-weight:800;font-size:14px}
+.guia-it .n i{font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#fff;background:var(--c);font-size:13px}
+.guia-it small{font-size:12px;color:var(--muted);line-height:1.3}
+.guia-it.on{border-color:var(--c);box-shadow:0 0 0 2px var(--c)}
 .davis-desc b{color:var(--text)}
 
 .planta-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -212,6 +236,37 @@ dl.kv dt{color:var(--muted)} dl.kv dd{margin:0;font-weight:600;word-break:break-
 .hidden{display:none!important}
 a{color:var(--primary)}
 
+/* Ilustraciones de Inicio y Vuelo */
+.hero,.banner{position:relative;overflow:hidden}
+.hero-art{position:absolute;right:-8px;top:-6px;width:58%;max-width:270px;pointer-events:none}
+.hero-txt{position:relative;max-width:58%}
+.hero .stats{position:relative}
+.banner{background:linear-gradient(135deg,var(--primary),color-mix(in srgb,var(--primary) 65%,#0b3d24));color:#fff;border:0;min-height:118px;padding:18px 16px}
+@media (prefers-color-scheme:dark){.banner{background:linear-gradient(135deg,#1d4a33,#12301f);color:var(--text)}}
+.banner .eyebrow{color:rgba(255,255,255,.75)}
+.banner h2{color:inherit;font-size:21px;margin:2px 0}
+.banner p{margin:0;font-size:13px;opacity:.85}
+.banner .hero-art{width:56%;top:-2px}
+.ilus{width:100%;height:auto;display:block}
+.ilus .bob{animation:bob 3s ease-in-out infinite alternate}
+.ilus .helice{transform-box:fill-box;transform-origin:center;animation:helice .12s linear infinite alternate}
+.ilus .scan{animation:scan 2.4s ease-in-out infinite}
+.ilus .led{animation:pulse 1.2s infinite}
+@keyframes bob{to{transform:translateY(5px)}}
+@keyframes helice{to{transform:scaleX(.25)}}
+@keyframes scan{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateY(48px);opacity:0}}
+.art{width:64px;height:64px;border-radius:16px;display:block;overflow:hidden;background:var(--primary-soft)}
+.art .dv{--dvbg:var(--primary-soft);width:100%;height:100%}
+.art.y{background:color-mix(in srgb,var(--accent) 20%,transparent);color:var(--warn);padding:6px}
+.art.y svg{width:100%;height:100%}
+.rotor{transform-box:fill-box;transform-origin:center;animation:gira .6s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.hora input[type=time]{font-size:20px;font-weight:700;letter-spacing:.02em;min-width:0}
+.hora .btn{flex:none;min-width:84px}
+@media (prefers-reduced-motion:reduce){
+  .dv .les,.dv .planta,.dv .larva,.ilus .bob,.ilus .helice,.ilus .scan,.ilus .led,.rotor{animation:none!important}
+}
+
 /* Aviso de actualización */
 .update{position:fixed;left:12px;right:12px;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 12px);z-index:1500;max-width:616px;margin:0 auto;
   display:flex;align-items:center;gap:12px;padding:12px 12px 12px 16px;border-radius:18px;background:var(--text);color:var(--bg);
@@ -249,9 +304,12 @@ dialog.full{max-width:none;width:100vw;height:100dvh;max-height:none;border-radi
 <!-- ============ INICIO ============ -->
 <section class="view active" id="v-inicio">
   <div class="card hero">
-    <div class="eyebrow" id="hoyTxt"></div>
-    <h2>Captura de campo</h2>
-    <p>Daño por planta (escala de Davis) y bitácora de vuelo.</p>
+    <div class="hero-art" data-ilus="hero"></div>
+    <div class="hero-txt">
+      <div class="eyebrow" id="hoyTxt"></div>
+      <h2>Captura de campo</h2>
+      <p>Daño por planta y bitácora de vuelo.</p>
+    </div>
     <div class="stats">
       <div class="stat"><b id="stHoy">0</b><span>plantas hoy</span></div>
       <div class="stat"><b id="stVuelos">0</b><span>vuelos</span></div>
@@ -264,11 +322,11 @@ dialog.full{max-width:none;width:100vw;height:100dvh;max-height:none;border-radi
   </div>
   <div class="actions">
     <button class="action" data-go="danio" type="button">
-      <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-7 2-12 7-16-1 7-3 12-7 16zM12 21c0-5-2-9-6-12 0 6 2 10 6 12"/></svg></span>
+      <span class="art" data-art="planta"></span>
       <b>Registrar daño</b><small>Planta por planta, escala de Davis</small>
     </button>
     <button class="action" data-go="vuelo" type="button">
-      <span class="ic y"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="10" width="6" height="4" rx="1"/><path d="M9 11 5 7M15 11l4-4M9 13l-4 4M15 13l4 4"/><circle cx="5" cy="7" r="2"/><circle cx="19" cy="7" r="2"/><circle cx="5" cy="17" r="2"/><circle cx="19" cy="17" r="2"/></svg></span>
+      <span class="art y" data-art="dron"></span>
       <b>Bitácora de vuelo</b><small>Altura, GSD y condiciones</small>
     </button>
   </div>
@@ -315,9 +373,10 @@ dialog.full{max-width:none;width:100vw;height:100dvh;max-height:none;border-radi
         <div class="stepper"><button type="button" id="pMenos" aria-label="Planta anterior">−</button><input type="text" id="plantaId" inputmode="numeric" aria-label="Número de planta"><button type="button" id="pMas" aria-label="Planta siguiente">+</button></div>
       </div>
 
-      <div class="section-title big"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 21c0-7 2-12 7-16-1 7-3 12-7 16zM12 21c0-5-2-9-6-12 0 6 2 10 6 12"/></svg>Nivel de daño · escala de Davis</div>
+      <div class="section-title big"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 21c0-7 2-12 7-16-1 7-3 12-7 16zM12 21c0-5-2-9-6-12 0 6 2 10 6 12"/></svg>Nivel de daño · escala de Davis
+        <button type="button" class="btn ghost sm" id="btnGuia" style="margin-left:auto;text-transform:none;letter-spacing:0">Guía visual</button></div>
       <div class="davis" id="davisGrid"></div>
-      <div class="davis-desc" id="davisDesc">Toca un valor de 0 a 9 para registrar el nivel de daño.</div>
+      <div class="davis-desc"><span class="dv" id="davisFig"></span><span id="davisDesc">Toca un valor de 0 a 9, o abre la guía visual para compararlo con la planta.</span></div>
 
       <div class="rowline"><span>Gusanos presentes<small>Larvas observadas en la planta</small></span>
         <div class="stepper"><button type="button" id="lMenos" aria-label="Menos gusanos">−</button><output id="larvas">0</output><button type="button" id="lMas" aria-label="Más gusanos">+</button></div></div>
@@ -342,6 +401,10 @@ dialog.full{max-width:none;width:100vw;height:100dvh;max-height:none;border-radi
 
 <!-- ============ VUELO ============ -->
 <section class="view" id="v-vuelo">
+  <div class="card banner">
+    <div class="hero-art" data-ilus="vuelo"></div>
+    <div class="hero-txt"><div class="eyebrow">Imágenes multiespectrales</div><h2>Bitácora de vuelo</h2><p>Una bitácora por vuelo o captura.</p></div>
+  </div>
   <div class="card">
     <div class="card-head">
       <div><div class="eyebrow">Fecha del vuelo</div><div class="summary" id="vFecha"></div></div>
@@ -351,8 +414,9 @@ dialog.full{max-width:none;width:100vw;height:100dvh;max-height:none;border-radi
     <div class="grid">
       <label class="f full">Sitio<select id="vSitio"></select></label>
       <div class="full gpsline" id="vGps"></div>
-      <label class="f">Hora de inicio<div class="inline"><input type="time" id="vHi"><button type="button" class="btn sm" data-now="vHi">Ahora</button></div></label>
-      <label class="f">Hora de fin<div class="inline"><input type="time" id="vHf"><button type="button" class="btn sm" data-now="vHf">Ahora</button></div></label>
+      <div class="f full hora">Hora de inicio<div class="inline"><input type="time" id="vHi" aria-label="Hora de inicio"><button type="button" class="btn" data-now="vHi">Ahora</button></div></div>
+      <div class="f full hora">Hora de fin<div class="inline"><input type="time" id="vHf" aria-label="Hora de fin"><button type="button" class="btn" data-now="vHf">Ahora</button></div></div>
+      <div class="full hint" id="vDur"></div>
     </div>
   </div>
 
@@ -380,8 +444,10 @@ dialog.full{max-width:none;width:100vw;height:100dvh;max-height:none;border-radi
   <div class="card">
     <div class="section-title">Cultivo y cobertura</div>
     <div class="grid">
-      <label class="f">Etapa fenológica<select id="vFen"></select></label>
+      <div class="f">Etapa fenológica<select id="vFen" aria-label="Etapa fenológica"></select>
+        <div class="tag hl hidden" id="vFenTag" style="min-height:48px;justify-content:center"></div></div>
       <div class="f">Días post infestación<div class="tag hl" style="min-height:48px;justify-content:center"><span id="vDdi">—</span></div></div>
+      <div class="full hint" id="vFenHint" style="margin-top:-4px"></div>
       <div class="f full"><div style="display:flex;justify-content:space-between;align-items:center">Unidades experimentales cubiertas<button type="button" class="btn ghost sm" id="vUesTodas">Todas</button></div>
         <div class="chips" id="vUes" style="margin-top:0"></div></div>
     </div>
@@ -446,8 +512,8 @@ dialog.full{max-width:none;width:100vw;height:100dvh;max-height:none;border-radi
     <button class="btn sm danger" type="button" id="mBorrar">Borrar</button>
   </div>
   <div class="map-bottom">
-    <div class="info"><div><div class="eyebrow">Área delimitada</div><b id="mArea">—</b></div><span class="hint" id="mVert">0 vértices</span></div>
-    <p class="hint" style="margin:0 0 10px">Toca el mapa para agregar vértices o recorre el perímetro y usa «+ Vértice con GPS». Arrastra un vértice para moverlo.</p>
+    <div class="info"><div><div class="eyebrow" id="mTitulo">Área delimitada</div><b id="mArea">—</b></div><span class="hint" id="mVert">0 vértices</span></div>
+    <p class="hint" style="margin:0 0 10px" id="mHint"></p>
     <div class="btn-row"><button class="btn" type="button" data-cerrar>Cancelar</button><button class="btn primary" type="button" id="mGuardar">Guardar área</button></div>
   </div>
 </dialog>
@@ -462,7 +528,7 @@ dialog.full{max-width:none;width:100vw;height:100dvh;max-height:none;border-radi
 
 <script>
 'use strict';
-const APP_VERSION = '2.1.0';
+const APP_VERSION = '2.3.0';
 
 /* =================== Definiciones =================== */
 const COLS = {
@@ -474,7 +540,7 @@ const COLS = {
           'unidades_cubiertas','carpeta_imagenes','operador','incidencias','latitud','longitud','precision_m','id_registro','registrado_en']
 };
 const COLS_CAT = {
-  sitios: ['id_sitio','nombre','etapa_experimento','latitud','longitud','precision_m','area_m2','n_vertices','poligono_wkt','actualizado_en'],
+  sitios: ['id_sitio','nombre','etapa_experimento','latitud','longitud','precision_m','origen_ubicacion','area_m2','n_vertices','poligono_wkt','actualizado_en'],
   unidades_experimentales: ['id_ue','unidad_experimental','sitio','etapa_experimento','tratamiento','repeticion','fecha_infestacion','actualizado_en']
 };
 const NUMERICOS = new Set(['planta_id','dias_post_infestacion','escala_davis','larvas_observadas','repeticion','vuelo_num',
@@ -506,6 +572,166 @@ const DAVIS = [
   'Hojas del cogollo casi totalmente destruidas.'
 ];
 const davisColor = i => `hsl(${140 - i*15} 58% ${i<4?38:44}%)`;
+const NOTA_DAVIS = 'Ilustraciones propias, esquemáticas, basadas en las descripciones resumidas de Davis et al. (1992). [VERIFICAR] contra el artículo original antes de citarlas en el protocolo.';
+
+/* =================== Ilustraciones propias (SVG) =================== */
+let svgN = 0;
+function rng(seed){ return () => { seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+// Geometría de hojas: curva central (Bézier cúbica) y ancho máximo
+const bz = (p,t) => { const u=1-t; return [0,1].map(i => u*u*u*p[0][i] + 3*u*u*t*p[1][i] + 3*u*t*t*p[2][i] + t*t*t*p[3][i]); };
+const bzD = (p,t) => { const u=1-t; return [0,1].map(i => 3*u*u*(p[1][i]-p[0][i]) + 6*u*t*(p[2][i]-p[1][i]) + 3*t*t*(p[3][i]-p[2][i])); };
+const anchoH = (h,t) => h.w * (1 - Math.pow(t, 2.4)) * Math.min(1, 0.45 + t*3.5);   // lámina tipo cinta: ancha y con punta al final
+function ptHoja(h, t, s){ const [x,y]=bz(h.p,t), [dx,dy]=bzD(h.p,t), L=Math.hypot(dx,dy)||1, w=anchoH(h,t)*s;
+  return {x:x - dy/L*w, y:y + dx/L*w, a:Math.atan2(dy,dx)*180/Math.PI}; }
+const f1 = n => n.toFixed(1);
+function contornoHoja(h, tMax, r){
+  const N=26, izq=[], der=[];
+  for(let i=0;i<=N;i++){ const t=i/N*tMax, a=ptHoja(h,t,1), b=ptHoja(h,t,-1); izq.push(a); der.push(b); }
+  const borde = [];
+  if(tMax<1) for(let j=1;j<6;j++){ const q=ptHoja(h, tMax - (j%2 ? 0.04+r()*0.06 : 0), 1-2*j/6); borde.push(q); }  // borde roído
+  return 'M' + [...izq, ...borde, ...der.reverse()].map(q => f1(q.x)+' '+f1(q.y)).join(' L') + ' Z';
+}
+function nervio(h, tMax){ let d=''; for(let i=0;i<=12;i++){ const [x,y]=bz(h.p, i/12*tMax*0.95); d += (i?' L':'M')+f1(x)+' '+f1(y); } return d; }
+function hueco(x, y, rad, r){ let d=''; for(let i=0;i<9;i++){ const a=i/9*Math.PI*2, rr=rad*(0.65+r()*0.5);
+  d += (i?' L':'M') + f1(x+Math.cos(a)*rr) + ' ' + f1(y+Math.sin(a)*rr*0.8); } return d+' Z'; }
+// Planta vista desde arriba, con el cogollo al centro (como se observa en campo)
+const CX = 100, CY = 98;
+function hojaRadial(ang, L, w, curva){ const a=ang*Math.PI/180, dx=Math.cos(a), dy=Math.sin(a), nx=-dy, ny=dx;
+  const P = (d,o) => [CX+dx*d+nx*o, CY+dy*d+ny*o];
+  return {p:[P(5,0), P(L*0.35, curva*0.5), P(L*0.7, curva*1.2), P(L, curva*2)], w}; }
+const HOJAS_F = [
+  hojaRadial(-168,165,34,-16), hojaRadial(-118,150,30,14), hojaRadial(-62,165,34,-14), hojaRadial(-8,170,36,16),
+  hojaRadial(48,160,32,-18), hojaRadial(108,155,34,14), hojaRadial(158,160,30,-12),
+  hojaRadial(-96,72,19,6), hojaRadial(80,64,17,-6)          // cartucho: hojas jóvenes al centro
+];
+const VERDES = [['#24561f','#5f9f3f'],['#2a6224','#6aac46'],['#275c22','#73b44c'],['#2b6526','#6fae47'],['#255a21','#64a442'],
+  ['#2a6124','#6cab45'],['#245520','#5d9c3d'],['#3c7f2f','#8cc65a'],['#397a2d','#86c057']];
+const JOV = [7,8,2,3,4], TOD = [0,1,2,3,4,5,6,7,8];   // hojas jóvenes (cartucho) y todas
+// [tipo de lesión, cantidad, hojas] por nivel (0–9). pin = alfiler, circ = circular, eS/eM/eL = alargada chica/mediana/grande, hS/hL = agujero
+const PLAN_F = [
+  [],
+  [['pin',3,[7,8,2]]],
+  [['pin',6,JOV],['circ',4,JOV]],
+  [['pin',4,JOV],['circ',6,JOV],['eS',4,JOV]],
+  [['circ',3,JOV],['eS',5,JOV],['eM',6,JOV]],
+  [['eS',4,JOV],['eM',5,JOV],['eL',5,JOV],['hS',4,JOV]],
+  [['eM',6,TOD],['eL',7,TOD],['hS',3,JOV],['hL',3,JOV]],
+  [['eS',6,TOD],['eM',7,TOD],['eL',8,TOD],['hL',6,JOV]],
+  [['eS',8,TOD],['eM',9,TOD],['eL',10,TOD],['hS',7,TOD],['hL',8,TOD]],
+  [['eL',8,TOD],['hL',16,JOV],['hS',10,TOD]]
+];
+const LES_F = {pin:{rx:2,ry:1.7}, circ:{rx:3,ry:2.6}, eS:{rx:6,ry:2.1}, eM:{rx:10,ry:2.6}, eL:{rx:15,ry:3.1}, hS:{rx:5,ry:4}, hL:{rx:9.5,ry:7}};
+function blob(x, y, rx, ry, ang, r, n=12){ const a0=ang*Math.PI/180, c=Math.cos(a0), s=Math.sin(a0); let d='';
+  for(let i=0;i<n;i++){ const a=i/n*Math.PI*2, q=0.72+r()*0.42, px=Math.cos(a)*rx*q, py=Math.sin(a)*ry*q;
+    d += (i?' L':'M') + f1(x+px*c-py*s) + ' ' + f1(y+px*s+py*c); } return d+' Z'; }
+// Larva vista desde arriba: franja dorsal clara, pináculas oscuras y cápsula cefálica con «Y» invertida
+function larvaSVG(x, y, ang, lg, anim){
+  const w = lg*0.24, seg = Math.max(5, Math.round(lg/3.2));
+  let ptos=''; for(let i=1;i<seg;i++){ const px=-lg/2+i*lg/seg; ptos += `<circle cx="${f1(px)}" cy="${f1(-w*0.28)}" r=".55"/><circle cx="${f1(px)}" cy="${f1(w*0.28)}" r=".55"/>`; }
+  const hx = lg/2;
+  return `<g transform="translate(${f1(x)} ${f1(y)}) rotate(${ang.toFixed(0)})"><g class="${anim?'larva':''}">
+    <rect x="${f1(-lg/2)}" y="${f1(-w/2)}" width="${f1(lg)}" height="${f1(w)}" rx="${f1(w/2)}" fill="#6e5a43" stroke="#3e3123" stroke-width=".4"/>
+    <rect x="${f1(-lg/2+1)}" y="${f1(-w*0.12)}" width="${f1(lg-3)}" height="${f1(w*0.24)}" rx="1" fill="#b7a07c" opacity=".8"/>
+    <g fill="#1c140d">${ptos}</g>
+    <ellipse cx="${f1(hx)}" cy="0" rx="${f1(w*0.62)}" ry="${f1(w*0.58)}" fill="#2a1d12"/>
+    <path d="M${f1(hx+w*0.4)} 0 H${f1(hx)} L${f1(hx-w*0.38)} ${f1(-w*0.34)} M${f1(hx)} 0 L${f1(hx-w*0.38)} ${f1(w*0.34)}" stroke="#f1e7d2" stroke-width=".55" fill="none"/>
+  </g></g>`;
+}
+function davisSVG(nivel, anim=false){
+  const k = ++svgN, r = rng(nivel*7919 + 13), plan = PLAN_F[nivel] || [], d9 = nivel===9;
+  const tMx = TOD.map(i => d9 ? (i>=7 ? 0.55 : [2,3,4].includes(i) ? 0.8 : 1) : 1);
+  let i = 0;
+  const cl = anim ? ' les' : '', del = () => anim ? ` style="animation-delay:${Math.min(120 + i++*35, 1400)}ms"` : '';
+  const lesH = TOD.map(() => '');
+  plan.forEach(([tipo, n, hs]) => {
+    for(let j=0;j<n;j++){
+      const hi = hs[Math.floor(r()*hs.length)], h = HOJAS_F[hi], interior = hi>=7;
+      const t0 = interior ? 0.22 : 0.1, t1 = Math.min(interior ? 0.9 : 0.5, tMx[hi]-0.05);
+      const p = ptHoja(h, t0 + r()*(t1-t0), (r()*2-1)*0.6), L = LES_F[tipo], q = 0.8 + r()*0.45;
+      const d = blob(p.x, p.y, L.rx*q, L.ry*(0.85+r()*0.3), p.a, r);
+      lesH[hi] += tipo[0]==='h' ? `<path class="hoyo${cl}"${del()} d="${d}" fill="url(#ps${k})"/>` : `<path class="vent${cl}"${del()} d="${d}"/>`;
+    }
+  });
+  const hoja = hi => {
+    const h = HOJAS_F[hi], [c0,c1] = VERDES[hi], g = `lg${k}_${hi}`, a = h.p[0], b = h.p[3];
+    let venas = '';
+    [-0.72,-0.48,-0.24,0.24,0.48,0.72].forEach(s => { let d=''; for(let q=0;q<=14;q++){ const pt=ptHoja(h, q/14*tMx[hi]*0.97, s); d += (q?' L':'M')+f1(pt.x)+' '+f1(pt.y); } venas += `<path d="${d}"/>`; });
+    return `<linearGradient id="${g}" gradientUnits="userSpaceOnUse" x1="${f1(a[0])}" y1="${f1(a[1])}" x2="${f1(b[0])}" y2="${f1(b[1])}">
+        <stop offset="0" stop-color="${d9 && hi>=7 ? '#6b7a35' : c0}"/><stop offset=".55" stop-color="${c1}"/><stop offset="1" stop-color="${c1}"/></linearGradient>
+      <path d="${contornoHoja(h, tMx[hi], r)}" fill="url(#${g})" stroke="#1d4818" stroke-width=".6"/>
+      <g stroke="#eaf7d8" stroke-opacity=".13" stroke-width=".6" fill="none">${venas}</g>
+      <path d="${nervio(h, tMx[hi])}" stroke="#eef8e0" stroke-opacity=".55" stroke-width="1.7" fill="none"/>${lesH[hi]}`;
+  };
+  // Excremento tipo aserrín en el cogollo
+  const nH = d9 ? 40 : nivel>=7 ? 18 : nivel>=5 ? 8 : 0, rH = d9 ? 16 : 10, colH = ['#b48c5c','#8a6440','#cfae7c','#6e4b2e'];
+  let heces = '';
+  for(let j=0;j<nH;j++){ const a=r()*Math.PI*2, d=Math.sqrt(r())*rH;
+    heces += `<circle class="heces${cl}"${del()} cx="${f1(CX+Math.cos(a)*d+2)}" cy="${f1(CY+Math.sin(a)*d*0.8-2)}" r="${f1(0.9+r()*1.4)}" fill="${colH[j%4]}"/>`; }
+  const larva = nivel>=4 ? larvaSVG(CX+5, CY-9, d9 ? -20 : -62, 10 + (Math.min(nivel,8)-4)*3 + (d9?3:0), anim) : '';
+  return `<svg viewBox="0 0 200 188" role="img" aria-label="Ilustración del nivel ${nivel} de la escala de Davis">
+    <defs>
+      <filter id="su${k}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="3" seed="${nivel+4}"/>
+        <feColorMatrix type="matrix" values=".38 0 0 0 .22  .26 0 0 0 .13  .18 0 0 0 .07  0 0 0 0 1"/></filter>
+      <pattern id="ps${k}" patternUnits="userSpaceOnUse" width="200" height="188"><rect width="200" height="188" filter="url(#su${k})"/></pattern>
+      <filter id="tx${k}"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="n"/>
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 .06  0 0 0 0 0  .35 0 0 0 -.1" result="m"/>
+        <feComposite in="m" in2="SourceGraphic" operator="in" result="mi"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="mi"/></feMerge></filter>
+      <radialGradient id="emb${k}"><stop offset="0" stop-color="#0c200b"/><stop offset=".6" stop-color="#173d14" stop-opacity=".85"/><stop offset="1" stop-color="#1d4a18" stop-opacity="0"/></radialGradient>
+      <radialGradient id="vi${k}" cx=".5" cy=".5" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient>
+    </defs>
+    <rect width="200" height="188" filter="url(#su${k})"/>
+    <g filter="url(#tx${k})">${[0,1,2,3,4,5,6].map(hoja).join('')}</g>
+    <ellipse cx="${CX}" cy="${CY}" rx="16" ry="14" fill="url(#emb${k})"/>
+    <g filter="url(#tx${k})">${[7,8].map(hoja).join('')}</g>
+    ${heces}${larva}
+    <rect width="200" height="188" fill="url(#vi${k})" pointer-events="none"/></svg>`;
+}
+/* Fotos de referencia propias por nivel (solo en este teléfono). Si existen, sustituyen al dibujo. */
+let refUrls = {};
+async function cargarRefs(){
+  for(let n=0;n<10;n++){ try{ const f = await IDB.get('ref-'+n); if(refUrls[n]) URL.revokeObjectURL(refUrls[n]); refUrls[n] = f ? URL.createObjectURL(f.blob) : null; }catch(e){ refUrls[n] = null; } }
+}
+const mediaDavis = (n, anim=false) => refUrls[n]
+  ? `<img class="ref" src="${refUrls[n]}" alt="Foto de referencia, nivel ${n}"><span class="ref-tag">Tu foto</span>` : davisSVG(n, anim);
+function guiaDavisHTML(sel){
+  return `<div class="guia">${DAVIS.map((t,i) => `<button type="button" class="guia-it ${sel===i?'on':''}" data-g="${i}" style="--c:${davisColor(i)}">
+    <span class="dv">${mediaDavis(i)}</span><span class="n"><i>${i}</i>Davis ${i}</span><small>${esc(t)}</small></button>`).join('')}</div>`;
+}
+function animarGuia(el){ const n = Number(el.dataset.g), dv = el.classList.contains('dv') ? el : el.querySelector('.dv'); if(!refUrls[n]) dv.innerHTML = davisSVG(n, true); }
+// Dron multiespectral sobre el cultivo (Inicio y Vuelo)
+function ilusDron(k){
+  const surcos = [-60,-10,40,90,140,190,240,290].map(x => `<path d="M${x} 140 L112 101"/>`).join('');
+  const plantas = [[22,136],[48,131],[170,133],[196,138],[78,137],[140,138]].map(([x,y]) =>
+    `<path d="M${x} ${y} v-7 M${x} ${y-4} q-4 -4 -8 -3 M${x} ${y-5} q4 -5 8 -4"/>`).join('');
+  return `<svg viewBox="0 0 220 140" aria-hidden="true" class="ilus">
+  <defs>
+    <linearGradient id="haz${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c6ffd6" stop-opacity=".55"/><stop offset="1" stop-color="#c6ffd6" stop-opacity="0"/></linearGradient>
+    <linearGradient id="esp${k}" x1="0" x2="1"><stop offset="0" stop-color="#5ee07a"/><stop offset=".35" stop-color="#ff6b6b"/><stop offset=".68" stop-color="#ffa94d"/><stop offset="1" stop-color="#b48cff"/></linearGradient>
+    <clipPath id="cl${k}"><polygon points="-6,10 6,10 36,60 -36,60"/></clipPath>
+  </defs>
+  <circle cx="190" cy="26" r="12" fill="#f6d27a" opacity=".9"/>
+  <path d="M0 102 Q55 84 110 98 T220 90 V140 H0Z" fill="#ffffff" opacity=".1"/>
+  <path d="M0 116 Q70 100 140 112 T220 106 V140 H0Z" fill="#0b2e1b" opacity=".22"/>
+  <g stroke="#ffffff" stroke-opacity=".2" stroke-width="1.1" fill="none">${surcos}</g>
+  <g stroke="#c9f5d3" stroke-opacity=".75" stroke-width="1.6" fill="none" stroke-linecap="round">${plantas}</g>
+  <g transform="translate(112 44)"><g class="bob">
+    <g clip-path="url(#cl${k})"><polygon points="-6,10 6,10 36,60 -36,60" fill="url(#haz${k})"/><rect class="scan" x="-36" y="10" width="72" height="2.4" fill="url(#esp${k})"/></g>
+    <g stroke="#eef4ef" stroke-linecap="round"><line x1="-9" y1="-2" x2="-30" y2="-9" stroke-width="3"/><line x1="9" y1="-2" x2="30" y2="-9" stroke-width="3"/>
+      <line x1="-7" y1="-4" x2="-20" y2="-14" stroke-width="2.2" opacity=".8"/><line x1="7" y1="-4" x2="20" y2="-14" stroke-width="2.2" opacity=".8"/></g>
+    <ellipse class="helice" cx="-30" cy="-12" rx="12" ry="1.8" fill="#fff" opacity=".75"/><ellipse class="helice" cx="30" cy="-12" rx="12" ry="1.8" fill="#fff" opacity=".75"/>
+    <ellipse class="helice" cx="-20" cy="-16" rx="9" ry="1.4" fill="#fff" opacity=".5"/><ellipse class="helice" cx="20" cy="-16" rx="9" ry="1.4" fill="#fff" opacity=".5"/>
+    <rect x="-13" y="-7" width="26" height="11" rx="5" fill="#f4f7f2"/><rect x="-9" y="-5" width="18" height="3" rx="1.5" fill="#cfd8d1"/>
+    <rect x="-5" y="4" width="10" height="6" rx="2" fill="#26352c"/><circle cx="0" cy="7" r="1.8" fill="#7fd3ff"/>
+    <circle class="led" cx="-11" cy="1" r="1.2" fill="#ff5a5a"/><circle class="led" cx="11" cy="1" r="1.2" fill="#5aff8a"/>
+  </g></g></svg>`;
+}
+function dronMini(){
+  const rot = [[18,18],[46,18],[18,46],[46,46]].map(([x,y]) => `<circle cx="${x}" cy="${y}" r="9.5" fill="#fff" fill-opacity=".5" stroke="currentColor" stroke-opacity=".5" stroke-width="1.2"/>
+    <g transform="translate(${x} ${y})"><line class="rotor" x1="-8" y1="0" x2="8" y2="0" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></g>`).join('');
+  return `<svg viewBox="0 0 64 64" aria-hidden="true"><g stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><line x1="20" y1="20" x2="44" y2="44"/><line x1="44" y1="20" x2="20" y2="44"/></g>
+    ${rot}<rect x="24.5" y="24.5" width="15" height="15" rx="4.5" fill="currentColor"/><circle cx="32" cy="32" r="2.6" fill="#7fd3ff"/></svg>`;
+}
 const MONTECILLO = [19.4636, -98.9036];
 const RADIO_AUTO_M = 300;   // distancia máxima para proponer un sitio sin polígono
 
@@ -585,7 +811,7 @@ const guardarCat = () => { catSucio = true; LS.set('fc_cat_sucio', true); return
 const guardarRegistros = () => LS.set('fc_registros', registros);
 const guardarSesion = () => LS.set('fc_sesion', sesion);
 const guardarVuelo = () => LS.set('fc_vuelo', vuelo);
-const pendientes = () => registros.filter(r => !r.sincronizado || r.foto_pend);
+const pendientes = () => registros.filter(r => !r.sincronizado || r.foto_pend || r.corr_pend);
 const sitioPorId = id => cat.sitios.find(s => s.id===id);
 const uePorId = id => cat.ues.find(u => u.id===id);
 const uesDeSitio = sid => cat.ues.filter(u => !sid || u.sitio_id===sid).sort((a,b) => a.codigo.localeCompare(b.codigo, 'es', {numeric:true}));
@@ -620,7 +846,7 @@ window.addEventListener('popstate', e => {
   if(st.v !== vistaActual) ir(st.v, false);
   if(st.p) abrirPanel(st.p, false, st.arg); else cerrarPanel(false);
 });
-function abrirDlg(d){ d.showModal(); history.pushState({v:vistaActual, dlg:d.id, p:panelActual}, ''); }
+function abrirDlg(d){ if(d.open) return; d.showModal(); history.pushState({v:vistaActual, dlg:d.id, p:panelActual}, ''); }
 function cerrarDlg(d){ if(!d.open) return; if(history.state && history.state.dlg===d.id) history.back(); else { d.close(); if(d.id==='dlgMapa') mapaCerrado(); } }
 document.addEventListener('click', e => { const b=e.target.closest('[data-cerrar]'); if(b) cerrarDlg(b.closest('dialog')); });
 $$('dialog').forEach(d => d.addEventListener('cancel', e => { e.preventDefault(); cerrarDlg(d); }));
@@ -756,7 +982,12 @@ function renderPlanta(){
   $('#larvas').textContent = planta.larvas;
   $('#davisGrid').classList.toggle('has-sel', planta.davis!==null);
   $$('#davisGrid button').forEach(b => b.classList.toggle('on', Number(b.dataset.d)===planta.davis));
-  $('#davisDesc').innerHTML = planta.davis===null ? 'Toca un valor de 0 a 9 para registrar el nivel de daño.' : `<b>Davis ${planta.davis}.</b> ${esc(DAVIS[planta.davis])}`;
+  $('#davisDesc').innerHTML = planta.davis===null ? 'Toca un valor de 0 a 9, o abre la guía visual para compararlo con la planta.' : `<b>Davis ${planta.davis}.</b> ${esc(DAVIS[planta.davis])}`;
+  const fig = planta.davis===null ? 'base' : `${planta.davis}|${refUrls[planta.davis] || ''}`;
+  if($('#davisFig').dataset.n !== fig){   // solo se redibuja (y anima) al cambiar de nivel
+    $('#davisFig').dataset.n = fig;
+    $('#davisFig').innerHTML = planta.davis===null ? davisSVG(0) : mediaDavis(planta.davis, true);
+  }
   $('#btnGuardarPlanta').textContent = `Guardar planta ${planta.id}`;
   $('#btnGuardarPlanta').disabled = planta.davis===null;
   $('#fotoPrev').classList.toggle('hidden', !fotoActual);
@@ -771,6 +1002,14 @@ function renderChipsUE(){
     : '<span class="hint">Aún no hay plantas registradas.</span>';
 }
 $('#davisGrid').addEventListener('click', e => { const b=e.target.closest('button'); if(!b) return; planta.davis = Number(b.dataset.d); navigator.vibrate?.(12); renderPlanta(); });
+$('#btnGuia').addEventListener('click', () => {
+  $('#dlgTitle').textContent = 'Guía visual · escala de Davis';
+  $('#dlgBody').innerHTML = `<p class="hint" style="margin-top:0">Compara la planta con los dibujos y toca el nivel que mejor corresponda.</p>${guiaDavisHTML(planta.davis)}<p class="hint">${NOTA_DAVIS}</p>`;
+  $('#dlgFoot').innerHTML = `<button class="btn block" type="button" data-cerrar>Cerrar</button>`;
+  $('#dlgBody .guia').onclick = e => { const b=e.target.closest('[data-g]'); if(!b) return;
+    planta.davis = Number(b.dataset.g); navigator.vibrate?.(12); cerrarDlg($('#dlg')); renderPlanta(); };
+  abrirDlg($('#dlg'));
+});
 $('#pMenos').addEventListener('click', () => { planta.id = Math.max(1, planta.id-1); renderPlanta(); });
 $('#pMas').addEventListener('click', () => { planta.id++; renderPlanta(); });
 $('#plantaId').addEventListener('change', e => { const n=parseInt(e.target.value,10); planta.id = isNaN(n)||n<1 ? 1 : n; renderPlanta(); });
@@ -840,6 +1079,9 @@ function renderVuelo(){
   $('#vNum').textContent = vuelo.num;
   $('#vSitio').innerHTML = opts(cat.sitios.map(x => [x.id, `${x.nombre} · ${x.etapa}`]), vuelo.sitio_id, cat.sitios.length ? 'Selecciona el sitio…' : 'Regístralos en Configurar');
   $('#vHi').value = vuelo.hi; $('#vHf').value = vuelo.hf;
+  const mins = (h) => { const [a,b]=h.split(':').map(Number); return a*60+b; };
+  const dur = vuelo.hi && vuelo.hf ? mins(vuelo.hf) - mins(vuelo.hi) : null;
+  $('#vDur').textContent = dur===null ? '' : dur>=0 ? `Duración: ${dur} min` : 'La hora de fin es anterior a la de inicio.';
   $('#vAlt').innerHTML = opts([...cat.alturas].sort((a,b)=>a-b).map(h => [h, `${h} m`]), vuelo.altura, 'Selecciona…');
   $('#vGsd').textContent = vuelo.altura ? `${gsd(vuelo.altura)} cm/píxel` : '—';
   const t = etapa ? ajustes.traslape[etapa] || {f:'',l:''} : {f:'',l:''};
@@ -850,7 +1092,12 @@ function renderVuelo(){
   $('#vTrasHint').textContent = !etapa ? 'El traslape se toma de Configurar según el tipo de sitio.' : fijo ? `Traslape fijo para ${etapa.toLowerCase()} (se cambia en Configurar).` : `Traslape para ${etapa.toLowerCase()} por definir: anótalo aquí o fíjalo en Configurar.`;
   $('#vEquipo').textContent = `Equipo: ${ajustes.equipo || '—'} · GSD = altura / ${ajustes.gsdDiv}`;
   $$('#v-vuelo .seg[data-v]').forEach(sg => marcarSeg(sg, vuelo[sg.dataset.v]));
-  $('#vFen').innerHTML = opts(ETAPAS_FEN, vuelo.fen, '—');
+  const fd = fenDelDia();
+  if(fd) vuelo.fen = fd.valor;
+  $('#vFen').classList.toggle('hidden', !!fd); $('#vFenTag').classList.toggle('hidden', !fd);
+  if(fd) $('#vFenTag').textContent = fd.valor; else $('#vFen').innerHTML = opts(ETAPAS_FEN, vuelo.fen, '—');
+  $('#vFenHint').textContent = !s ? '' : fd ? `Etapa fenológica tomada del registro de daño de hoy (${fd.n} planta${fd.n>1?'s':''}${fd.ues?' de las unidades cubiertas':' del sitio'}).`
+    : 'Aún no hay registros de daño hoy en este sitio: elige la etapa fenológica aquí.';
   const lista = uesDeSitio(vuelo.sitio_id);
   $('#vUes').innerHTML = lista.length ? lista.map(u => `<button type="button" class="chip t ${vuelo.ues.includes(u.id)?'on':''}" data-ue="${u.id}">${esc(u.codigo)}</button>`).join('')
     : '<span class="hint">Selecciona un sitio con unidades registradas.</span>';
@@ -861,6 +1108,17 @@ function renderVuelo(){
   if(!vuelo.carpetaManual) vuelo.carpeta = carpetaSugerida();
   $('#vCarpeta').value = vuelo.carpeta;
   guardarVuelo(); pintarGPS();
+}
+// Etapa fenológica del vuelo = la anotada hoy en el registro de daño (unidades cubiertas o, si no hay, todo el sitio)
+function fenDelDia(){
+  const s = sitioPorId(vuelo.sitio_id); if(!s) return null;
+  let rs = registros.filter(r => r.tipo==='danio' && r.datos.fecha===hoy() && r.datos.sitio===s.nombre && r.datos.etapa_fenologica);
+  const codigos = new Set(vuelo.ues.map(id => uePorId(id)?.codigo).filter(Boolean));
+  let deUes = false;
+  if(codigos.size){ const sub = rs.filter(r => codigos.has(r.datos.unidad_experimental)); if(sub.length){ rs = sub; deUes = true; } }
+  const etapas = [...new Set(rs.map(r => r.datos.etapa_fenologica))].sort((a,b) => ETAPAS_FEN.indexOf(a)-ETAPAS_FEN.indexOf(b));
+  if(!etapas.length) return null;
+  return {valor: etapas.length===1 ? etapas[0] : `${etapas[0]}–${etapas[etapas.length-1]}`, n: rs.length, ues: deUes};
 }
 function ddiVuelo(){
   const ds = [...new Set(vuelo.ues.map(id => ddiDe(uePorId(id))).filter(x => x!==''))].map(Number).sort((a,b)=>a-b);
@@ -938,49 +1196,105 @@ $('#recTipo').addEventListener('click', e => { const b=e.target.closest('button'
 $('#recBuscar').addEventListener('input', renderRegistros);
 $('#recList').addEventListener('click', e => { const it=e.target.closest('[data-id]'); if(it) abrirRegistro(it.dataset.id); });
 
-let urlFotoDlg = null;
-async function abrirRegistro(id){
+/* Detalle y edición. Un registro ya sincronizado también se puede corregir: se pide el motivo,
+   se actualiza la fila en la hoja y el cambio queda en la pestaña «correcciones» (valor anterior → nuevo). */
+const EDITABLES = {
+  danio: ['fecha','hora','unidad_experimental','planta_id','etapa_fenologica','escala_davis','larvas_observadas','observador','notas'],
+  vuelo: ['vuelo_num','hora_inicio','hora_fin','altura_vuelo_m','traslape_frontal_pct','traslape_lateral_pct','nubosidad','viento','iluminacion',
+          'etapa_fenologica','unidades_cubiertas','carpeta_imagenes','operador','incidencias']
+};
+const OPC_COND = {nubosidad:['Despejado','Parcial','Nublado'], viento:['Calma','Ligero','Moderado','Fuerte'], iluminacion:['Sol directo','Difusa','Variable']};
+let urlFotoDlg = null, fotoEdit = null;
+function campoEdit(k, v){
+  const L = esc(ETIQUETAS[k]||k), val = esc(v), sel = (lista, vacio) => `<label class="f">${L}<select name="${k}">${opts(lista, v, vacio)}</select></label>`;
+  const conActual = lista => (v && !lista.some(o => (Array.isArray(o)?o[0]:o)===v)) ? [[v, v], ...lista] : lista;
+  if(k==='unidad_experimental') return sel(conActual(uesDeSitio('').map(u => [u.codigo, `${u.codigo} · ${sitioPorId(u.sitio_id)?.nombre||''} · ${u.tratamiento||''}`])));
+  if(k==='escala_davis') return sel(DAVIS.map((t,i) => [String(i), `${i} — ${t}`]));
+  if(k==='etapa_fenologica') return sel(conActual(ETAPAS_FEN), '—');
+  if(k==='observador'||k==='operador') return sel(conActual(cat.personas), '—');
+  if(k==='altura_vuelo_m') return sel(conActual([...cat.alturas].sort((a,b)=>a-b).map(h => [String(h), `${h} m · GSD ${gsd(h)} cm/px`])), '—');
+  if(OPC_COND[k]) return sel(conActual(OPC_COND[k]), '—');
+  if(k==='fecha') return `<label class="f">${L}<input type="date" name="${k}" value="${val}"></label>`;
+  if(k.startsWith('hora')) return `<label class="f hora">${L}<input type="time" name="${k}" value="${val}"></label>`;
+  if(k==='notas'||k==='incidencias') return `<label class="f">${L}<textarea name="${k}">${val}</textarea></label>`;
+  return `<label class="f">${L}<input type="text" name="${k}" value="${val}" ${NUMERICOS.has(k)?'inputmode="decimal"':''}></label>`;
+}
+async function abrirRegistro(id, editar=false){
   const r = registros.find(x => x.id===id); if(!r) return;
   const d = r.datos, cols = COLS[r.tipo], dlg=$('#dlg');
-  $('#dlgTitle').textContent = r.tipo==='danio' ? `${d.unidad_experimental} · Planta ${d.planta_id}` : (d.carpeta_imagenes || 'Vuelo');
+  $('#dlgTitle').textContent = (editar ? 'Editar · ' : '') + (r.tipo==='danio' ? `${d.unidad_experimental} · Planta ${d.planta_id}` : (d.carpeta_imagenes || 'Vuelo'));
   let fotoHtml = '';
   if(d.foto){
-    try{ const f = await IDB.get(r.id); if(urlFotoDlg) URL.revokeObjectURL(urlFotoDlg);
+    try{ const f = await IDB.get(r.id); if(urlFotoDlg) URL.revokeObjectURL(urlFotoDlg); urlFotoDlg = null;
       if(f){ urlFotoDlg = URL.createObjectURL(f.blob); fotoHtml = `<div class="foto-prev" style="margin-bottom:14px"><img src="${urlFotoDlg}" alt="Foto del registro"></div>`; }
-      else if(d.foto_url) fotoHtml = `<p><a href="${esc(d.foto_url)}" target="_blank" rel="noopener">Ver foto en Google Drive</a></p>`;
+      else if(d.foto_url) fotoHtml = `<p><a href="${esc(d.foto_url)}" target="_blank" rel="noopener">Ver foto en Google Drive ↗</a></p>`;
     }catch(e){}
   }
-  if(r.sincronizado){
-    $('#dlgBody').innerHTML = `${fotoHtml}<div class="note">Enviado a Google Sheets el ${esc(new Date(r.sincronizado).toLocaleString('es-MX',{dateStyle:'medium',timeStyle:'short'}))}${r.foto_pend?' (la foto aún está pendiente)':''}. Es un dato crudo: si hay un error, documenta la corrección en <i>datos/metadatos/</i> en lugar de modificarlo.</div>
-      <dl class="kv">${cols.map(k => `<dt>${esc(ETIQUETAS[k]||k)}</dt><dd>${esc(d[k]) || '—'}</dd>`).join('')}</dl>`;
-    $('#dlgFoot').innerHTML = `<button class="btn block" type="button" data-cerrar>Cerrar</button>`;
-  } else {
-    const editables = cols.filter(k => !NO_EDITABLES.has(k));
-    $('#dlgBody').innerHTML = `${fotoHtml}<div class="note warn">Pendiente de sincronizar: aún puedes corregirlo o eliminarlo.</div>
-      <div class="grid one" id="dlgForm">${editables.map(k => {
-        const v = esc(d[k]);
-        if(k==='escala_davis') return `<label class="f">${ETIQUETAS[k]}<select name="${k}">${opts(DAVIS.map((_,i)=>String(i)), d[k])}</select></label>`;
-        if(k==='etapa_fenologica') return `<label class="f">${ETIQUETAS[k]}<select name="${k}">${opts(ETAPAS_FEN, d[k], '—')}</select></label>`;
-        if(k==='observador'||k==='operador') return `<label class="f">${ETIQUETAS[k]}<select name="${k}">${opts([...new Set([...cat.personas, d[k]].filter(Boolean))], d[k], '—')}</select></label>`;
-        if(['fecha','fecha_infestacion'].includes(k)) return `<label class="f">${ETIQUETAS[k]}<input type="date" name="${k}" value="${v}"></label>`;
-        if(['hora','hora_inicio','hora_fin'].includes(k)) return `<label class="f">${ETIQUETAS[k]}<input type="time" name="${k}" value="${v}"></label>`;
-        if(['notas','incidencias'].includes(k)) return `<label class="f">${ETIQUETAS[k]}<textarea name="${k}">${v}</textarea></label>`;
-        return `<label class="f">${ETIQUETAS[k]||k}<input type="text" name="${k}" value="${v}" ${NUMERICOS.has(k)?'inputmode="decimal"':''}></label>`;
-      }).join('')}</div>`;
-    $('#dlgFoot').innerHTML = `<button class="btn danger" type="button" id="dlgDel">Eliminar</button><button class="btn primary" type="button" id="dlgSave">Guardar cambios</button>`;
-    $('#dlgSave').onclick = () => {
-      $$('#dlgForm [name]').forEach(el => { d[el.name] = NUMERICOS.has(el.name) ? num(el.value) : el.value.trim(); });
-      if(r.tipo==='danio' && d.fecha_infestacion) d.dias_post_infestacion = diasEntre(d.fecha_infestacion, d.fecha);
-      if(r.tipo==='vuelo' && d.altura_vuelo_m) d.gsd_cm_px = gsd(d.altura_vuelo_m);
-      r.modificado = isoLocal(); guardarRegistros(); cerrarDlg(dlg); toast('Cambios guardados'); refrescar();
-    };
-    $('#dlgDel').onclick = async () => {
+  const nCorr = (r.correcciones||[]).length;
+  const fechaSync = r.sincronizado ? new Date(r.sincronizado).toLocaleString('es-MX',{dateStyle:'medium',timeStyle:'short'}) : '';
+  if(!editar){
+    const davisFig = r.tipo==='danio' && DAVIS[d.escala_davis] ? `<div class="davis-desc" style="margin-top:0;margin-bottom:14px"><span class="dv">${mediaDavis(Number(d.escala_davis))}</span><span><b>Davis ${esc(d.escala_davis)}.</b> ${esc(DAVIS[d.escala_davis])}</span></div>` : '';
+    const estado = r.sincronizado
+      ? `<div class="note">Enviado a Google Sheets el ${esc(fechaSync)}${r.foto_pend?' · foto pendiente':''}${r.corr_pend?' · corrección pendiente de enviar':''}.${nCorr ? ` Corregido ${nCorr} ${nCorr>1?'veces':'vez'}; el historial queda en la pestaña «correcciones».` : ''}</div>`
+      : `<div class="note warn">Pendiente de sincronizar.</div>`;
+    $('#dlgBody').innerHTML = `${davisFig}${fotoHtml}${estado}<dl class="kv">${cols.map(k => `<dt>${esc(ETIQUETAS[k]||k)}</dt><dd>${esc(d[k]) || '—'}</dd>`).join('')}</dl>`;
+    $('#dlgFoot').innerHTML = (r.sincronizado ? '' : `<button class="btn danger" type="button" id="dlgDel">Eliminar</button>`) +
+      `<button class="btn primary" type="button" id="dlgEdit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>Editar</button>`;
+    $('#dlgEdit').onclick = () => abrirRegistro(id, true);
+    if($('#dlgDel')) $('#dlgDel').onclick = () => {
       if(!confirm('¿Eliminar este registro del teléfono? No se puede deshacer.')) return;
       registros = registros.filter(x => x.id!==id); guardarRegistros(); if(d.foto) IDB.del(id).catch(()=>{});
       cerrarDlg(dlg); toast('Registro eliminado'); refrescar();
     };
+    abrirDlg(dlg); $('#dlgBody').scrollTop = 0;
+    return;
   }
-  abrirDlg(dlg);
+  // ---- Modo edición ----
+  if(fotoEdit){ URL.revokeObjectURL(fotoEdit.url); fotoEdit = null; }
+  const bloqueFoto = r.tipo!=='danio' ? '' : `<div class="f">Fotografía<div id="eFotoPrev">${fotoHtml || '<span class="hint">Sin foto</span>'}</div>
+      <label class="btn sm">${d.foto ? 'Cambiar foto' : 'Agregar foto'}<input type="file" id="eFoto" accept="image/*" capture="environment" hidden></label></div>`;
+  $('#dlgBody').innerHTML = (r.sincronizado
+      ? `<div class="note warn">Este registro ya está en Google Sheets. Al guardar, la fila se actualizará en la próxima sincronización y el cambio quedará documentado en la pestaña «correcciones», con el valor anterior y el motivo.</div>`
+      : `<div class="note warn">Pendiente de sincronizar: los cambios se enviarán directamente.</div>`) +
+    `<div class="grid one" id="dlgForm">${EDITABLES[r.tipo].map(k => campoEdit(k, d[k]??'')).join('')}${bloqueFoto}
+     ${r.sincronizado ? '<label class="f">Motivo de la corrección<textarea id="eMotivo" placeholder="p. ej. error de captura: era la planta 12"></textarea></label>' : ''}</div>`;
+  $('#dlgFoot').innerHTML = `<button class="btn" type="button" id="dlgCancel">Cancelar</button><button class="btn primary" type="button" id="dlgSave">Guardar cambios</button>`;
+  $('#dlgCancel').onclick = () => abrirRegistro(id, false);
+  if($('#eFoto')) $('#eFoto').onchange = async e => {
+    const f = e.target.files[0]; e.target.value=''; if(!f) return;
+    try{ const blob = await comprimir(f); if(fotoEdit) URL.revokeObjectURL(fotoEdit.url); fotoEdit = {blob, url:URL.createObjectURL(blob)};
+      $('#eFotoPrev').innerHTML = `<div class="foto-prev"><img src="${fotoEdit.url}" alt="Foto nueva"></div><span class="hint">Foto nueva (se guarda al tocar «Guardar cambios»)</span>`; }
+    catch(err){ toast('No se pudo leer la foto', true); }
+  };
+  $('#dlgSave').onclick = async () => {
+    const antes = Object.assign({}, d), nuevo = Object.assign({}, d);
+    $$('#dlgForm [name]').forEach(el => { nuevo[el.name] = NUMERICOS.has(el.name) ? num(el.value) : el.value.trim(); });
+    if(r.tipo==='danio'){
+      if(nuevo.unidad_experimental !== antes.unidad_experimental){
+        const u = cat.ues.find(x => x.codigo===nuevo.unidad_experimental && sitioPorId(x.sitio_id)?.nombre===antes.sitio) || cat.ues.find(x => x.codigo===nuevo.unidad_experimental);
+        if(u){ const s = sitioPorId(u.sitio_id);
+          Object.assign(nuevo, {sitio:s?s.nombre:nuevo.sitio, etapa_experimento:s?s.etapa:nuevo.etapa_experimento, tratamiento:u.tratamiento||'', repeticion:u.repeticion||'', fecha_infestacion:u.fecha_infestacion||''}); }
+      }
+      if(nuevo.fecha_infestacion) nuevo.dias_post_infestacion = diasEntre(nuevo.fecha_infestacion, nuevo.fecha);
+      if(fotoEdit){ nuevo.foto = `${(nuevo.fecha||'').replace(/-/g,'')}_${nuevo.unidad_experimental}_P${pad(nuevo.planta_id)}_${r.id.slice(0,8)}_${Date.now().toString(36)}.jpg`.replace(/[^\w.-]/g,'_'); nuevo.foto_url = ''; }
+    }
+    if(r.tipo==='vuelo' && nuevo.altura_vuelo_m) nuevo.gsd_cm_px = gsd(nuevo.altura_vuelo_m);
+    const cambios = cols.filter(c => String(antes[c]??'') !== String(nuevo[c]??'')).map(c => ({campo:c, anterior:String(antes[c]??''), nuevo:String(nuevo[c]??'')}));
+    if(!cambios.length){ toast('No hay cambios que guardar'); return; }
+    if(r.sincronizado){
+      const motivo = $('#eMotivo').value.trim();
+      if(!motivo){ toast('Escribe el motivo de la corrección', true); $('#eMotivo').focus(); return; }
+      r.correcciones = (r.correcciones||[]).concat({id:uid(), fecha:isoLocal(), motivo, cambios, enviado:false});
+      r.corr_pend = true;
+    }
+    if(fotoEdit){ try{ await IDB.put(r.id, {blob:fotoEdit.blob, nombre:nuevo.foto}); r.foto_pend = true; }catch(e){ toast('No se pudo guardar la foto', true); return; } }
+    Object.assign(d, nuevo); r.modificado = isoLocal(); guardarRegistros();
+    if(fotoEdit){ URL.revokeObjectURL(fotoEdit.url); fotoEdit = null; }
+    toast(r.sincronizado ? `Corrección guardada (${cambios.length} campo${cambios.length>1?'s':''}); se enviará al sincronizar` : 'Cambios guardados');
+    refrescar(); syncDiferido();
+    abrirRegistro(id, false);
+  };
+  abrirDlg(dlg); $('#dlgBody').scrollTop = 0;
 }
 function refrescar(){
   if(vistaActual==='registros') renderRegistros(); if(vistaActual==='danio') renderChipsUE(); if(vistaActual==='inicio') renderInicio();
@@ -1025,7 +1339,7 @@ function filasCatalogo(){
   const t = isoLocal();
   return {
     sitios: cat.sitios.map(s => ({id_sitio:s.id, nombre:s.nombre, etapa_experimento:s.etapa, latitud:s.lat!=null?s.lat.toFixed(7):'', longitud:s.lon!=null?s.lon.toFixed(7):'',
-      precision_m:s.acc!=null?String(Math.round(s.acc)):'', area_m2:s.poligono&&s.poligono.length>2?String(Math.round(areaM2(s.poligono))):'',
+      precision_m:s.acc!=null?String(Math.round(s.acc)):'', origen_ubicacion:s.lat!=null?(s.origen||'GPS'):'', area_m2:s.poligono&&s.poligono.length>2?String(Math.round(areaM2(s.poligono))):'',
       n_vertices:String(s.poligono?s.poligono.length:0), poligono_wkt:wkt(s.poligono), actualizado_en:t})),
     unidades_experimentales: cat.ues.map(u => { const s=sitioPorId(u.sitio_id); return {id_ue:u.id, unidad_experimental:u.codigo, sitio:s?s.nombre:'', etapa_experimento:s?s.etapa:'',
       tratamiento:u.tratamiento||'', repeticion:u.repeticion||'', fecha_infestacion:u.fecha_infestacion||'', actualizado_en:t}; })
@@ -1038,7 +1352,7 @@ async function sincronizar(silencioso=false){
   if(!pend.length && !catSucio){ if(!silencioso) toast('Todo está sincronizado'); renderSyncEstado(); return; }
   if(!navigator.onLine){ if(!silencioso) toast('Sin conexión: se enviará después', true); return; }
   sincronizando = true; renderSyncEstado('busy');
-  let enviados = 0, fotos = 0;
+  let enviados = 0, fotos = 0, corr = 0;
   try{
     if(catSucio){
       const f = filasCatalogo();
@@ -1055,6 +1369,12 @@ async function sincronizar(silencioso=false){
         guardarRegistros();
       }
     }
+    for(const r of registros.filter(x => x.corr_pend && x.sincronizado)){
+      const pend = (r.correcciones||[]).filter(c => !c.enviado);
+      await llamarScript({accion:'corregir', tipo:r.tipo, columnas:COLS[r.tipo], fila:r.datos,
+        correcciones: pend.map(c => ({id:c.id, fecha:c.fecha, motivo:c.motivo, cambios:c.cambios}))});
+      pend.forEach(c => c.enviado = true); r.corr_pend = false; corr++; guardarRegistros();
+    }
     for(const r of registros.filter(x => x.foto_pend && x.sincronizado)){
       const f = await IDB.get(r.id);
       if(!f){ r.foto_pend=false; guardarRegistros(); continue; }
@@ -1062,7 +1382,7 @@ async function sincronizar(silencioso=false){
       r.datos.foto_url = j.url || ''; r.foto_pend = false; fotos++; guardarRegistros();
     }
     syncInfo = {ultimo:new Date().toISOString(), error:null};
-    if(!silencioso || enviados || fotos) toast(`Enviado a Google Sheets: ${enviados} registro${enviados===1?'':'s'}${fotos?`, ${fotos} foto${fotos===1?'':'s'}`:''}`);
+    if(!silencioso || enviados || fotos || corr) toast(`Enviado a Google Sheets: ${enviados} registro${enviados===1?'':'s'}${corr?`, ${corr} corrección${corr===1?'':'es'}`:''}${fotos?`, ${fotos} foto${fotos===1?'':'s'}`:''}`);
   }catch(e){
     syncInfo.error = e.message || 'Sin respuesta';
     if(!silencioso) toast('No se pudo sincronizar: ' + syncInfo.error, true);
@@ -1143,10 +1463,13 @@ const PANELES = {
         <label class="f">Nombre del sitio<input type="text" id="sNombre" value="${esc(s.nombre)}" placeholder="p. ej. Invernadero 3 Montecillo" autocomplete="off"></label>
         <div class="f">Tipo<div class="seg" id="sEtapa"><button type="button" data-o="Invernadero">Invernadero</button><button type="button" data-o="Campo">Campo</button></div></div>
       </div></div>
-      <div class="card"><div class="section-title">Ubicación GPS</div>
-        <div class="gpsline" id="sGps">${s.lat!=null ? `<span class="g"><span class="gdot ok"></span><span>${s.lat.toFixed(6)}, ${s.lon.toFixed(6)} · ±${Math.round(s.acc||0)} m</span></span>` : '<span class="g"><span class="gdot"></span><span>Sin ubicación registrada</span></span>'}</div>
-        <div class="btn-row" style="margin-top:10px"><button type="button" class="btn sm" id="sTomarGps">Tomar ubicación actual</button>
-        ${s.lat!=null ? `<a class="btn sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lon}">Ver en Google Maps</a>` : ''}</div>
+      <div class="card"><div class="section-title">Ubicación del sitio</div>
+        <div class="gpsline" id="sGps">${s.lat!=null ? `<span class="g"><span class="gdot ok"></span><span>${s.lat.toFixed(6)}, ${s.lon.toFixed(6)} · ${s.acc!=null ? '±'+Math.round(s.acc)+' m (GPS)' : esc(s.origen==='Centro del área' ? 'centro del área' : 'pin colocado en el mapa')}</span></span>` : '<span class="g"><span class="gdot"></span><span>Sin ubicación registrada</span></span>'}</div>
+        <div class="btn-row" style="margin-top:10px">
+          <button type="button" class="btn sm" id="sTomarGps"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7"/></svg>Usar mi ubicación</button>
+          <button type="button" class="btn sm" id="sPin"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Colocar pin en el mapa</button>
+        </div>
+        ${s.lat!=null ? `<a class="btn ghost sm" style="margin-top:6px" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lon}">Ver en Google Maps ↗</a>` : ''}
       </div>
       <div class="card"><div class="section-title">Área de establecimiento de la plaga</div>
         <div class="gpsline"><span class="g"><span class="gdot ${tienePol?'ok':''}"></span><span>${tienePol ? `Polígono de ${s.poligono.length} vértices · ${fmtArea(areaM2(s.poligono))}` : 'Sin área delimitada'}</span></span></div>
@@ -1158,7 +1481,8 @@ const PANELES = {
     $('#sNombre').oninput = e => s.nombre = e.target.value;
     $('#sEtapa').onclick = e => { const b=e.target.closest('button'); if(b){ s.etapa=b.dataset.o; marcarSeg($('#sEtapa'), s.etapa); } };
     $('#sTomarGps').onclick = () => tomarPunto(s);
-    $('#sMapa').onclick = () => abrirMapa(s);
+    $('#sMapa').onclick = () => abrirMapa(s, 'area');
+    $('#sPin').onclick = () => abrirMapa(s, 'pin');
     $('#sGuardar').onclick = () => {
       s.nombre = s.nombre.trim();
       if(!s.nombre){ toast('Escribe el nombre del sitio', true); return; }
@@ -1295,9 +1619,23 @@ const PANELES = {
     };
   },
   davis(){
-    $('#cfgPanel').innerHTML = cab('Escala de Davis', 'Referencia rápida para campo.') +
-      `<div class="card"><dl class="kv">${DAVIS.map((d,i) => `<dt><span class="chip" style="padding:0;border:0;background:none"><i style="--c:${davisColor(i)}">${i}</i></span></dt><dd style="font-weight:500">${esc(d)}</dd>`).join('')}</dl>
-      <p class="hint" style="margin-bottom:0">Descripciones resumidas de Davis et al. (1992). [VERIFICAR] contra el artículo original antes de citarlas en el protocolo.</p></div>`;
+    $('#cfgPanel').innerHTML = cab('Escala de Davis', 'Toca un dibujo para ver la animación. Puedes sustituir cada dibujo por una foto de referencia tuya (de preferencia de tu propio experimento); las fotos se guardan solo en este teléfono.') +
+      `<div class="guia">${DAVIS.map((t,i) => `<div class="guia-it" style="--c:${davisColor(i)}">
+        <button type="button" class="dv" data-g="${i}" style="border:0;padding:0;width:100%;aspect-ratio:200/188;border-radius:10px">${mediaDavis(i)}</button>
+        <span class="n"><i>${i}</i>Davis ${i}</span><small>${esc(t)}</small>
+        <div class="btn-row" style="gap:6px;flex-wrap:nowrap"><label class="btn sm" style="flex:1;padding:0 8px;font-size:13px">${refUrls[i] ? 'Cambiar foto' : '+ Foto'}<input type="file" accept="image/*" hidden data-ref-n="${i}"></label>
+        ${refUrls[i] ? `<button type="button" class="btn sm danger" data-quitar-ref="${i}" style="flex:none;padding:0 12px" aria-label="Quitar foto del nivel ${i}">×</button>` : ''}</div></div>`).join('')}</div>
+      <p class="hint">${NOTA_DAVIS} Las fotos de referencia no se incluyen en el respaldo JSON.</p>`;
+    $('#cfgPanel .guia').onclick = e => { const b=e.target.closest('button[data-g]'); if(b) animarGuia(b); };
+    $('#cfgPanel').querySelectorAll('[data-ref-n]').forEach(inp => inp.onchange = async e => {
+      const f = e.target.files[0], n = inp.dataset.refN; if(!f) return;
+      try{ const blob = await comprimir(f); await IDB.put('ref-'+n, {blob, nombre:`referencia_davis_${n}.jpg`}); await cargarRefs(); PANELES.davis(); toast(`Foto de referencia del nivel ${n} guardada`); }
+      catch(err){ toast('No se pudo guardar la foto', true); }
+    });
+    $('#cfgPanel').querySelectorAll('[data-quitar-ref]').forEach(b => b.onclick = async () => {
+      const n = b.dataset.quitarRef; if(!confirm(`¿Quitar la foto de referencia del nivel ${n}? Se volverá a mostrar el dibujo.`)) return;
+      await IDB.del('ref-'+n).catch(()=>{}); await cargarRefs(); PANELES.davis(); toast('Foto quitada');
+    });
   }
 };
 const itemUE = u => `<button type="button" class="item" data-ue-edit="${u.id}"><span class="badge ic" style="font-size:12px">${esc(u.repeticion?'R'+u.repeticion:'—')}</span>
@@ -1322,13 +1660,15 @@ function tomarPunto(s){
   if(!('geolocation' in navigator)){ toast('Este navegador no ofrece GPS', true); return; }
   $('#sGps').innerHTML = '<span class="g"><span class="gdot busy"></span><span>Obteniendo ubicación…</span></span>';
   navigator.geolocation.getCurrentPosition(p => {
-    s.lat=p.coords.latitude; s.lon=p.coords.longitude; s.acc=p.coords.accuracy; PANELES.sitio(); toast(`Ubicación tomada (±${Math.round(s.acc)} m)`);
+    s.lat=p.coords.latitude; s.lon=p.coords.longitude; s.acc=p.coords.accuracy; s.origen='GPS'; PANELES.sitio(); toast(`Ubicación tomada (±${Math.round(s.acc)} m)`);
   }, err => { toast(err.code===1 ? 'Permiso de ubicación denegado' : 'No se obtuvo señal GPS', true); PANELES.sitio(); },
   {enableHighAccuracy:true, timeout:30000, maximumAge:0});
 }
 
 /* =================== Mapa (Leaflet + imagen satelital) =================== */
-let mapa=null, capaPol=null, marcas=[], yoMarca=null, vertices=[], sitioMapa=null;
+let mapa=null, capaPol=null, marcas=[], yoMarca=null, vertices=[], sitioMapa=null, modoMapa='area', pinMapa=null;
+const ICONO_PIN = () => L.divIcon({className:'pin', iconSize:[30,40], iconAnchor:[15,39],
+  html:'<svg viewBox="0 0 30 40" width="30" height="40"><path d="M15 39s13-13.6 13-24A13 13 0 0 0 2 15c0 10.4 13 24 13 24z" fill="#d64545" stroke="#fff" stroke-width="2"/><circle cx="15" cy="15" r="5" fill="#fff"/></svg>'});
 function cargarLeaflet(){
   if(window.L) return Promise.resolve();
   return new Promise((res, rej) => {
@@ -1336,9 +1676,16 @@ function cargarLeaflet(){
     const js = document.createElement('script'); js.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js'; js.onload=res; js.onerror=rej; document.head.appendChild(js);
   });
 }
-async function abrirMapa(s){
+async function abrirMapa(s, modo='area'){
   try{ await cargarLeaflet(); }catch(e){ toast('No se pudo cargar el mapa: se necesita señal de internet', true); return; }
-  sitioMapa = s; vertices = (s.poligono||[]).map(p => p.slice());
+  sitioMapa = s; modoMapa = modo; vertices = (s.poligono||[]).map(p => p.slice());
+  pinMapa = s.lat!=null ? [s.lat, s.lon] : null;
+  const pin = modo==='pin';
+  ['#mGps','#mDeshacer','#mBorrar'].forEach(id => $(id).classList.toggle('hidden', pin));
+  $('#mTitulo').textContent = pin ? 'Ubicación del sitio' : 'Área delimitada';
+  $('#mHint').textContent = pin ? 'Toca el mapa para colocar el pin; arrástralo para ajustarlo.'
+    : 'Toca el mapa para agregar vértices o recorre el perímetro y usa «+ Vértice con GPS». Arrastra un vértice para moverlo.';
+  $('#mGuardar').textContent = pin ? 'Guardar ubicación' : 'Guardar área';
   abrirDlg($('#dlgMapa'));
   if(!mapa){
     mapa = L.map('mapa', {zoomControl:false, attributionControl:true});
@@ -1346,19 +1693,31 @@ async function abrirMapa(s){
       {maxZoom:21, maxNativeZoom:19, attribution:'Imágenes © Esri'}).addTo(mapa);
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',
       {maxZoom:21, maxNativeZoom:19}).addTo(mapa);
-    mapa.on('click', e => { vertices.push([e.latlng.lat, e.latlng.lng]); dibujar(); });
+    mapa.on('click', e => {
+      if(modoMapa==='pin') pinMapa = [e.latlng.lat, e.latlng.lng]; else vertices.push([e.latlng.lat, e.latlng.lng]);
+      dibujar();
+    });
   }
-  const centro = vertices.length ? null : (s.lat!=null ? [s.lat,s.lon] : posReciente() ? [pos.lat,pos.lon] : MONTECILLO);
+  const centro = s.lat!=null ? [s.lat,s.lon] : posReciente() ? [pos.lat,pos.lon] : MONTECILLO;
   setTimeout(() => {
     mapa.invalidateSize();
-    if(vertices.length) mapa.fitBounds(L.latLngBounds(vertices).pad(0.4)); else mapa.setView(centro, s.lat!=null||posReciente() ? 18 : 15);
+    if(vertices.length) mapa.fitBounds(L.latLngBounds(pinMapa ? [...vertices, pinMapa] : vertices).pad(0.4));
+    else mapa.setView(centro, s.lat!=null||posReciente() ? 18 : 15);
     dibujar(); mapaYo();
   }, 60);
   iniciarGPS();
 }
 function dibujar(){
   marcas.forEach(m => m.remove()); marcas=[]; if(capaPol){ capaPol.remove(); capaPol=null; }
-  if(vertices.length>1) capaPol = (vertices.length>2 ? L.polygon(vertices, {color:'#e9b949', weight:3, fillOpacity:.22}) : L.polyline(vertices, {color:'#e9b949', weight:3})).addTo(mapa);
+  const pin = modoMapa==='pin';
+  const estilo = pin ? {color:'#e9b949', weight:2, dashArray:'6 6', fillOpacity:.12, interactive:false} : {color:'#e9b949', weight:3, fillOpacity:.22};
+  if(vertices.length>1) capaPol = (vertices.length>2 ? L.polygon(vertices, estilo) : L.polyline(vertices, estilo)).addTo(mapa);
+  if(pinMapa){
+    const m = L.marker(pinMapa, {draggable:pin, interactive:pin, icon:ICONO_PIN(), opacity: pin ? 1 : .75}).addTo(mapa);
+    m.on('drag', e => { const ll=e.target.getLatLng(); pinMapa=[ll.lat, ll.lng]; actualizarInfoMapa(); });
+    marcas.push(m);
+  }
+  if(pin){ actualizarInfoMapa(); return; }
   vertices.forEach((v,i) => {
     const m = L.marker(v, {draggable:true, icon:L.divIcon({className:'vtx', iconSize:[20,20]})}).addTo(mapa);
     m.on('drag', e => { const ll=e.target.getLatLng(); vertices[i]=[ll.lat, ll.lng]; if(capaPol) capaPol.setLatLngs(vertices); actualizarInfoMapa(); });
@@ -1366,7 +1725,14 @@ function dibujar(){
   });
   actualizarInfoMapa();
 }
-function actualizarInfoMapa(){ $('#mArea').textContent = vertices.length>2 ? fmtArea(areaM2(vertices)) : '—'; $('#mVert').textContent = `${vertices.length} vértice${vertices.length===1?'':'s'}`; }
+function actualizarInfoMapa(){
+  if(modoMapa==='pin'){
+    $('#mArea').textContent = pinMapa ? `${pinMapa[0].toFixed(6)}, ${pinMapa[1].toFixed(6)}` : 'Toca el mapa';
+    $('#mVert').textContent = vertices.length>2 ? 'Área en línea punteada' : '';
+    return;
+  }
+  $('#mArea').textContent = vertices.length>2 ? fmtArea(areaM2(vertices)) : '—'; $('#mVert').textContent = `${vertices.length} vértice${vertices.length===1?'':'s'}`;
+}
 function mapaYo(){
   if(!mapa || !pos) return;
   if(!yoMarca) yoMarca = L.marker([pos.lat,pos.lon], {icon:L.divIcon({className:'yo', iconSize:[16,16]}), interactive:false}).addTo(mapa);
@@ -1379,9 +1745,17 @@ $('#mGps').onclick = () => { const p=posReciente(); if(!p){ toast('Esperando se�
 $('#mDeshacer').onclick = () => { vertices.pop(); dibujar(); };
 $('#mBorrar').onclick = () => { if(vertices.length && confirm('¿Borrar todos los vértices?')){ vertices=[]; dibujar(); } };
 $('#mGuardar').onclick = () => {
+  if(modoMapa==='pin'){
+    if(!pinMapa){ toast('Toca el mapa para colocar el pin', true); return; }
+    sitioMapa.lat = Number(pinMapa[0].toFixed(7)); sitioMapa.lon = Number(pinMapa[1].toFixed(7)); sitioMapa.acc = null; sitioMapa.origen = 'Manual';
+    cerrarDlg($('#dlgMapa'));
+    setTimeout(() => { if(panelActual==='sitio') PANELES.sitio(); }, 50);
+    toast('Ubicación colocada (falta «Guardar sitio»)');
+    return;
+  }
   if(vertices.length && vertices.length<3){ toast('Se necesitan al menos 3 vértices', true); return; }
   sitioMapa.poligono = vertices.map(v => [Number(v[0].toFixed(7)), Number(v[1].toFixed(7))]);
-  if(sitioMapa.lat==null && vertices.length>2){ const c=centroide(vertices); sitioMapa.lat=c[0]; sitioMapa.lon=c[1]; sitioMapa.acc=null; }
+  if(sitioMapa.lat==null && vertices.length>2){ const c=centroide(vertices); sitioMapa.lat=c[0]; sitioMapa.lon=c[1]; sitioMapa.acc=null; sitioMapa.origen='Centro del área'; }
   cerrarDlg($('#dlgMapa'));
   setTimeout(() => { if(panelActual==='sitio') PANELES.sitio(); }, 50);
   toast(vertices.length ? `Área: ${fmtArea(areaM2(vertices))} (falta «Guardar sitio»)` : 'Área eliminada (falta «Guardar sitio»)');
@@ -1420,6 +1794,12 @@ if('serviceWorker' in navigator && location.protocol !== 'file:'){
 navigator.storage?.persist?.().catch(()=>{});
 
 construirDavis();
+$$('[data-ilus]').forEach((el,i) => el.innerHTML = ilusDron(i));
+$('[data-art="planta"]').innerHTML = `<span class="dv">${davisSVG(3, false)}</span>`;
+$('[data-art="dron"]').innerHTML = dronMini();
+cargarRefs().then(() => { if(vistaActual==='danio'){ $('#davisFig').dataset.n=''; renderPlanta(); } });
+// Al cambiar de versión se reenvían los catálogos (p. ej. columnas nuevas en la hoja «sitios»)
+if(LS.get('fc_ver','') !== APP_VERSION){ if(cat.sitios.length || cat.ues.length){ catSucio = true; LS.set('fc_cat_sucio', true); } LS.set('fc_ver', APP_VERSION); }
 let vistaIni = 'inicio'; try{ vistaIni = sessionStorage.getItem('fc_vista') || 'inicio'; }catch(e){}
 history.replaceState({v:vistaIni}, '');
 ir(vistaIni, false);

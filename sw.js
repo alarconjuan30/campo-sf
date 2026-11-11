@@ -1,6 +1,6 @@
 // Service worker: guarda la app en el teléfono para que abra aun sin señal.
 // Al modificar index.html, subir el número de versión para que la app muestre «Nueva versión disponible».
-const CACHE = 'campo-sf-v3';
+const CACHE = 'campo-sf-v5';
 const ARCHIVOS = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png'];
 
 // Descarga la versión nueva sin pasar por la caché HTTP del navegador.
